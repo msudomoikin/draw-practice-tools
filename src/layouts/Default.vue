@@ -15,12 +15,12 @@
   
   <script>
 import Sidebar from '../components/Sidebar.vue';
-import Topbar from '../components/Topbar.vue';
+import Topbar from '../components/Sidebar.vue';
 
 
   export default {
     name: "DefaultLayout",
-    components: { Sidebar, Topbar }
+    components: { Sidebar }
 }
   </script>
   
