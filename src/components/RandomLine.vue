@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <v-container>
       <div class="p-6 bg-white rounded shadow-md">
         <h2 class="text-2xl font-bold mb-4">Ваша случайная линия:</h2>
         <svg :width="width" :height="height" class="mb-4">
@@ -7,7 +7,7 @@
         </svg>
         <button @click="generateLine" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Сгенерировать новую линию</button>
       </div>
-    </div>
+    </v-container>
   </template>
   
   <script>

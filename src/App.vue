@@ -1,30 +1,26 @@
 <template>
-    <div class="flex h-screen w-screen">
+  <v-app id="inspire">
+    <v-navigation-drawer v-model="drawer" permanent>
       <Sidebar></Sidebar>
-      <!-- Content -->
-      <div class="flex-1 flex flex-col">
-        <!-- Topbar -->
-        <!-- <Topbar></Topbar> -->
-        <!-- Main content -->
-        <div class="flex-1 items-start p-4 overflow-auto">
-          <router-view></router-view>
-        </div>
-      </div>
-    </div>
-  </template>
-  
-  <script>
-import Sidebar from './components/Sidebar.vue';
-import Topbar from './components/Topbar.vue';
+    </v-navigation-drawer>
 
+    <v-app-bar>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-title>Drawing practice</v-app-bar-title>
+    </v-app-bar>
 
-  export default {
-    name: "DefaultLayout",
-    components: { Sidebar, Topbar }
-}
-  </script>
-  
-  <style scoped>
-  /* Здесь может быть ваш CSS */
-  </style>
-  
+    <v-main>
+      <v-container>
+        <router-view></router-view>
+      </v-container>
+    </v-main>
+  </v-app>
+</template>
+
+<script setup>
+import Sidebar from "./components/Sidebar.vue";
+import { ref } from "vue";
+import { RouterView } from "vue-router";
+
+const drawer = ref(true);
+</script>
