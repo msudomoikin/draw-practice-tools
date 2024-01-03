@@ -1,46 +1,61 @@
 <template>
   <v-container>
-    <div class="p-6 bg-white rounded shadow-md">
-      <h2 class="text-2xl font-bold mb-4">Ваше случайное слово:</h2>
-      <p class="text-xl mb-4">{{ word }}</p>
-      <button
-        @click="generateWord"
-        class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-      >
-        Сгенерировать новое слово
-      </button>
-    </div>
+    <h1 class="text-h2 mb-4">Случайное слово</h1>
+
+    <v-alert
+      icon="mdi-information-outline"
+      text="Это упражнение поможет вам развить свою фантазию и творческий подход к рисованию."
+      type="info"
+      variant="tonal"
+      class="mb-10"
+    ></v-alert>
+    <v-skeleton-loader
+      type="heading"
+      class="mb-4"
+      v-if="loading"
+    ></v-skeleton-loader>
+    <p class="text-h2 mb-4" v-if="!loading">{{ randomWord }}</p>
+    <v-btn
+      class="bg-purple-darken-3 p-3"
+      icon="mdi-reload"
+      @click="getRandomWord()"
+    >
+    </v-btn>
   </v-container>
 </template>
 
-<script>
-import { ref } from "vue";
+<script setup>
+import axios from "axios";
+import { ref, onMounted } from "vue";
 
-export default {
-  setup() {
-    const words = [
-      "яблоко",
-      "банан",
-      "вишня",
-      "дыня",
-      "ежевика",
-      "желудь",
-      "земляника",
-      "ирис",
-      "йогурт",
-      "клубника",
-    ];
-    const word = ref(words[Math.floor(Math.random() * words.length)]);
+let randomWord = ref("");
+let loading = ref(true);
 
-    function generateWord() {
-      word.value = words[Math.floor(Math.random() * words.length)];
+async function getRandomWord() {
+  try {
+    loading.value = true;
+    const response = await axios.get("https://ru.wiktionary.org/w/api.php", {
+      params: {
+        action: "query",
+        format: "json",
+        list: "random",
+        rnnamespace: 0,
+        rnlimit: 1,
+      },
+    });
+
+    if (response.data && response.data.query && response.data.query.random) {
+      randomWord.value = response.data.query.random[0].title;
+      loading.value = false;
     }
+  } catch (error) {
+    console.error("Ошибка при получении случайного слова:", error);
+  }
+}
 
-    return { word, generateWord };
-  },
-};
+onMounted(() => {
+  getRandomWord();
+});
 </script>
 
-<style scoped>
-@import "https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css";
-</style>
+<style scoped></style>

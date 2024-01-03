@@ -1,17 +1,13 @@
 <template>
   <v-container>
-    <div class="p-6 bg-white rounded shadow-md">
-      <h2 class="text-2xl font-bold mb-4">
-        Ваше случайное прилагательное и существительное:
-      </h2>
-      <p class="text-xl mb-4">{{ adjective }} {{ noun }}</p>
-      <button
-        @click="generateWords"
-        class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-      >
-        Сгенерировать новые слова
-      </button>
-    </div>
+    <h1 class="text-h2 mb-4"></h1>
+    <p class="text-h3 mb-4">{{ adjective }} {{ noun }}</p>
+    <v-btn
+      class="bg-purple-darken-3 p-3"
+      icon="mdi-reload"
+      @click="generateWords()"
+    >
+    </v-btn>
   </v-container>
 </template>
 

@@ -1,28 +1,22 @@
 <template>
   <v-container>
-    <div>
-      <v-list>
-        <v-list-item>
-          <v-list-item-title>
-            <router-link to="/random-word">Random Word </router-link>
-          </v-list-item-title>
-        </v-list-item>
-        <v-list-item>
-          <v-list-item-title>
-            <router-link to="/random-line"> Random Line </router-link>
-          </v-list-item-title>
-        </v-list-item>
-        <v-list-item>
-          <v-list-item-title>
-            <router-link to="/random-spots"> Random Spots </router-link>
-          </v-list-item-title>
-        </v-list-item>
-        <v-list-item>
-          <v-list-item-title>
-            <router-link to="/random-prop"> Random Prop </router-link>
-          </v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </div>
+    <v-list nav>
+      <v-list-subheader class="text-uppercase">Упражнения</v-list-subheader>
+      <v-list-item to="/random-word">
+        <v-list-item-title>Случайное слово</v-list-item-title>
+      </v-list-item>
+
+      <v-list-item to="/random-line">
+        <v-list-item-title> Случайная линия </v-list-item-title>
+      </v-list-item>
+
+      <v-list-item to="/random-spots">
+        <v-list-item-title>Случайные пятна</v-list-item-title>
+      </v-list-item>
+
+      <v-list-item to="/random-prop">
+        <v-list-item-title>Случайное словосочетание</v-list-item-title>
+      </v-list-item>
+    </v-list>
   </v-container>
 </template>
