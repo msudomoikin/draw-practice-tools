@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1 class="text-h2 mb-4">Поиск рисунка в линиях</h1>
+    <h1 class="text-h2 mb-4">Поиск рисунка в пятнах</h1>
 
     <v-alert
       icon="mdi-information-outline"
@@ -10,7 +10,7 @@
       class="mb-10"
     ></v-alert>
     <v-sheet class="bg-grey-lighten-4">
-      <svg ref="svg" :width="width" :height="height" class="mb-4 d-block">
+      <svg ref="svg" :width="width" :height="height" class="mb-4 mx-auto d-block">
         <defs>
           <filter id="spot">
             <feTurbulence
@@ -54,43 +54,36 @@
   </v-container>
 </template>
 
-<script>
+<script setup>
 import { ref, onMounted } from "vue";
 
-export default {
-  setup() {
-    const width = 400;
-    const height = 400;
-    const spots = ref([]);
-    const svg = ref(null);
+const width = 500;
+const height = 500;
+const spots = ref([]);
+const svg = ref(null);
 
-    function generateSpots() {
-      spots.value = Array.from({ length: 10 }, (_, id) => ({
-        id,
-        x: Math.random() * width,
-        y: Math.random() * height,
-        radius: Math.random() * 100, // увеличен максимальный радиус
-      }));
-    }
+function generateSpots() {
+  spots.value = Array.from({ length: 10 }, (_, id) => ({
+    id,
+    x: Math.random() * width,
+    y: Math.random() * height,
+    radius: Math.random() * 100, // увеличен максимальный радиус
+  }));
+}
 
-    function downloadSVG() {
-      const serializer = new XMLSerializer();
-      const source = serializer.serializeToString(svg.value);
-      const url =
-        "data:image/svg+xml;charset=utf-8," + encodeURIComponent(source);
-      const downloadLink = document.createElement("a");
-      downloadLink.href = url;
-      downloadLink.download = "spots.svg";
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
-    }
+function downloadSVG() {
+  const serializer = new XMLSerializer();
+  const source = serializer.serializeToString(svg.value);
+  const url = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(source);
+  const downloadLink = document.createElement("a");
+  downloadLink.href = url;
+  downloadLink.download = "spots.svg";
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
+}
 
-    onMounted(generateSpots);
-
-    return { spots, generateSpots, width, height, svg, downloadSVG };
-  },
-};
+onMounted(generateSpots);
 </script>
 
 <style scoped></style>

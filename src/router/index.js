@@ -4,7 +4,7 @@ import RandomWord from "../components/RandomWord.vue";
 import RandomLine from "../components/RandomLine.vue";
 import RandomSpots from "../components/RandomSpots.vue";
 import RandomProp from "../components/RandomProp.vue";
-
+import SkullProportions from "../components/SkullProportions.vue"
 
 
 
@@ -14,6 +14,8 @@ const routes = [
   { path: "/random-line", name: "RandomLine", component: RandomLine },
   { path: "/random-spots", name: "RandomSpots", component: RandomSpots },
   { path: "/random-prop", name: "RandomProp", component: RandomProp },
+  { path: "/skull", name: "SkullProportions", component: SkullProportions },
+
 
 ];
 

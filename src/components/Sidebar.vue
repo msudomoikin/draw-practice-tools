@@ -17,6 +17,10 @@
       <v-list-item to="/random-prop">
         <v-list-item-title>Случайное словосочетание</v-list-item-title>
       </v-list-item>
+      <v-list-subheader class="text-uppercase">3D-Модели</v-list-subheader>
+      <v-list-item to="/skull">
+        <v-list-item-title>Пропорции черепа</v-list-item-title>
+      </v-list-item>
     </v-list>
   </v-container>
 </template>
